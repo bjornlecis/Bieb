@@ -50,6 +50,10 @@ def toon_menu():
     print("4 voeg boek toe")
     print("5 voeg persoon toe")
     print("6 voeg uitlening toe")
+    print("7 toon uitlening per boek")
+    print("8 toon boek geslacht")
+    print("9 sorteer boeken op titel")
+    print("10 verwijder uitlening")
 
 def toon_boeken():
     for x in boeken:
@@ -96,6 +100,30 @@ def voeg_uitlening_toe():
     else:
         print("Uitlening kan niet worden toegevoegd")
 
+def toon_uitleningen_boek():
+    id_boek = input("Geef het id van het boek")
+    for x in uitleningen:
+        if id_boek == x.boek.id:
+            print(x.persoon)
+        else:
+            print("Boek bestaat niet of nog niet uitgeleend")
+
+def toon_boek_geslacht():
+    geslacht = input("geef het gelacht")
+    for x in uitleningen:
+        if geslacht == x.persoon.geslacht:
+            print(x.boek)
+
+def sorteer_boek_AZ():
+    boeken.sort(key= lambda x:x.naam)
+    for x in boeken:
+        print(x)
+
+def verwijder_uitlening():
+    id = input("geef het id van de uitlening")
+    for x,o in enumerate(uitleningen):
+        if o.id == id:
+            uitleningen.pop(x)
 
 #hoofdprogramma
 toon_menu()
@@ -113,5 +141,13 @@ while(not keuze == "stop"):
         voeg_persoon_toe()
     elif keuze == "6":
         voeg_uitlening_toe()
+    elif keuze == "7":
+        toon_uitleningen_boek()
+    elif keuze == "8":
+        toon_boek_geslacht()
+    elif keuze == "9":
+        sorteer_boek_AZ()
+    elif keuze == "10":
+        verwijder_uitlening()
 
     keuze = input("geef een keuze")
