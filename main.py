@@ -27,7 +27,91 @@ class Uitlening:
         return "ID {} Boek: {} Persoon: {}".format(self.id,self.boek.naam,self.persoon.naam)
 
 p = Persoon("P1","Jan","Man")
-b = Boek("B1","Boek 1"," A1")
-u = Uitlening("U1",b,p)
+p2 = Persoon("P2","Bart","Man")
+p3 = Persoon("P3","An","Vrouw")
 
-print(u)
+b = Boek("B1","Boek 1"," a1")
+b2 = Boek("B2","Boek 2","a2")
+b3 = Boek("B3","Boek 3","a3")
+
+u = Uitlening("U1",b,p)
+u1 = Uitlening("U2",b2,p)
+u2 = Uitlening("U3",b3,p2)
+u3 = Uitlening("U4",b,p3)
+
+personen = [p,p2,p3]
+boeken = [b,b2,b3]
+uitleningen = [u,u1,u2,u3]
+
+def toon_menu():
+    print("1 toon alle boeken")
+    print("2 toon alle personen")
+    print("3 toon alle uitleningen")
+    print("4 voeg boek toe")
+    print("5 voeg persoon toe")
+    print("6 voeg uitlening toe")
+
+def toon_boeken():
+    for x in boeken:
+        print(x)
+
+def toon_personen():
+    for x in personen:
+        print(x)
+def toon_uitleningen():
+    for x in uitleningen:
+        print(x)
+
+def voeg_boek_toe():
+    id = input("Geef het ID")
+    naam = input("Geef de naam")
+    auteur = input("Geef de auteur")
+    b = Boek(id,naam,auteur)
+    boeken.append(b)
+
+def voeg_persoon_toe():
+
+    id = input("Geef het ID")
+    naam = input("Geef de naam")
+    geslacht = input("Geef het geslacht man/vrouw/x")
+    p = Persoon(id,naam,geslacht)
+    personen.append(p)
+
+def voeg_uitlening_toe():
+    id = input("geef het ID")
+    id_boek = input("geef het id van het boek")
+    #bestaat het boek
+    for x in boeken:
+        if id_boek == x.id:
+            b = Boek(id_boek,x.naam,x.auteur)
+
+    id_persoon = input("geef het id van de persoon")
+    for y in personen:
+        if id_persoon == y.id:
+            p = Persoon(id_persoon,y.naam,y.geslacht)
+
+    if isinstance(b,Boek) and isinstance(p,Persoon):
+        u = Uitlening(id,b,p)
+        uitleningen.append(u)
+    else:
+        print("Uitlening kan niet worden toegevoegd")
+
+
+#hoofdprogramma
+toon_menu()
+keuze = input("geef een keuze")
+while(not keuze == "stop"):
+    if keuze == "1":
+        toon_boeken()
+    elif keuze == "2":
+        toon_personen()
+    elif keuze == "3":
+        toon_uitleningen()
+    elif keuze == "4":
+        voeg_boek_toe()
+    elif keuze == "5":
+        voeg_persoon_toe()
+    elif keuze == "6":
+        voeg_uitlening_toe()
+
+    keuze = input("geef een keuze")
